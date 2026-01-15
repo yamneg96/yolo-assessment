@@ -1,0 +1,51 @@
+{
+  "total_images": 3,
+  "iou_threshold": 0.45,
+  "image_comparisons": [
+    {
+      "image_index": 0,
+      "pytorch_detections": 0,
+      "onnx_detections": 1,
+      "matches": 0,
+      "iou_matches": [],
+      "average_iou": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "confidence_differences": [],
+      "avg_confidence_difference": 0.0
+    },
+    {
+      "image_index": 1,
+      "pytorch_detections": 0,
+      "onnx_detections": 1,
+      "matches": 0,
+      "iou_matches": [],
+      "average_iou": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "confidence_differences": [],
+      "avg_confidence_difference": 0.0
+    },
+    {
+      "image_index": 2,
+      "pytorch_detections": 0,
+      "onnx_detections": 1,
+      "matches": 0,
+      "iou_matches": [],
+      "average_iou": 0.0,
+      "precision": 0.0,
+      "recall": 0.0,
+      "confidence_differences": [],
+      "avg_confidence_difference": 0.0
+    }
+  ],
+  "summary": {
+    "total_pytorch_detections": 0,
+    "total_onnx_detections": 3,
+    "total_matches": 0,
+    "average_iou": 0.0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "f1_score": 0.0
+  }
+}

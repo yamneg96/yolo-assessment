@@ -1,181 +1,220 @@
-# 🚀 YOLO PyTorch → ONNX Inference Assessment
+# YOLO PyTorch to ONNX Assessment Project
 
-This project demonstrates a complete, reproducible workflow for:
+A comprehensive Python project that demonstrates YOLO model conversion from PyTorch to ONNX format with detailed inference comparison and analysis.
 
-* Running inference using a **YOLO PyTorch model**
-* Converting the model to **ONNX**
-* Validating the ONNX model
-* Running inference again using **ONNX Runtime**
-* Comparing outputs for consistency
-
-The implementation emphasizes **clean environment setup**, **correctness**, **clear logging**, and **AI-assisted coding best practices**, following the provided assessment guidelines.
-
----
-
-## 📌 Overview
-
-**Key objectives covered in this project:**
-
-* ✅ Fresh Python environment setup
-* ✅ PyTorch inference using a YOLO `.pt` model
-* ✅ ONNX model conversion and validation
-* ✅ ONNX Runtime inference
-* ✅ Human-readable outputs (console + annotated images)
-* ✅ Optional output comparison for consistency
-
-This repository is intentionally **Python-only** to keep the scope focused on model inference and validation.
-
----
-
-## 🧠 Technologies Used
-
-* 🐍 Python 3.x
-* 🔥 PyTorch
-* 📦 Ultralytics YOLO
-* 🔁 ONNX
-* ⚡ ONNX Runtime
-* 🖼️ OpenCV / Matplotlib
-* 🤖 AI-assisted coding via **Cursor Pro / Windsurf**
-
----
-
-## 📂 Project Structure
+## Project Structure
 
 ```
 yolo-assessment/
 ├── pytorch_inference/
-│   └── run_pytorch.py        # PyTorch YOLO inference
+│   └── inference.py              # PyTorch-based YOLO inference
 ├── onnx_conversion/
-│   └── convert_to_onnx.py    # PyTorch → ONNX conversion
+│   └── convert.py                # PyTorch to ONNX conversion
 ├── onnx_inference/
-│   └── run_onnx.py           # ONNX Runtime inference
+│   └── inference.py              # ONNX Runtime inference
 ├── utils/
-│   └── visualization.py     # Bounding box utilities
-├── images/
-│   ├── image1.png
-│   ├── image2.png
-│   └── image3.png
+│   ├── __init__.py
+│   ├── preprocessing.py          # Image preprocessing utilities
+│   ├── visualization.py          # Visualization and plotting utilities
+│   ├── postprocessing.py         # Output processing and NMS
+│   └── iou_comparison.py         # IoU computation and result comparison
 ├── outputs/
-│   ├── pytorch/
-│   └── onnx/
-├── requirements.txt
-└── README.md
+│   ├── pytorch/                  # PyTorch inference results
+│   ├── onnx/                     # ONNX inference results
+│   └── comparison/               # Comparison analysis results
+├── images/                       # Input images for inference
+├── requirements.txt              # Pinned dependencies
+├── main.py                       # Main orchestration script
+├── yolo11n.pt                    # Pre-trained YOLO model
+└── README.md                     # This file
 ```
 
----
+## Features
 
-## ⚙️ Environment Setup
+- **PyTorch Inference**: Load and run YOLO models using Ultralytics
+- **ONNX Conversion**: Convert PyTorch models to ONNX with validation
+- **ONNX Runtime Inference**: Optimized inference using ONNX Runtime
+- **Result Comparison**: IoU-based comparison between PyTorch and ONNX results
+- **Visualization**: Annotated images and comparison plots
+- **Comprehensive Logging**: Detailed logging throughout the pipeline
+- **Production Quality**: Clean, modular, and well-documented code
 
-> A clean environment is created from scratch to ensure reproducibility.
+## Installation
 
+1. Clone or download the project
+2. Install dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+## Usage
+
+### Quick Start
+
+Run the complete pipeline with default settings:
 ```bash
-python -m venv env
-source env/bin/activate        # Linux / macOS
-env\Scripts\activate           # Windows
-pip install -r requirements.txt
+python main.py
 ```
 
----
+### Advanced Usage
 
-## ▶️ PyTorch Inference
-
-* Loads the YOLO `.pt` model
-* Runs inference on the provided images
-* Outputs:
-
-  * Bounding box coordinates
-  * Class labels
-  * Confidence scores
-  * Annotated images saved to disk
-
+Customize the pipeline with command-line arguments:
 ```bash
-python pytorch_inference/run_pytorch.py
+python main.py --model yolo11n.pt \
+               --images images/ \
+               --output outputs/ \
+               --confidence 0.25 \
+               --iou-threshold 0.45 \
+               --cuda
 ```
 
-📌 **This step establishes the baseline output before ONNX conversion.**
+### Individual Components
 
----
+Run specific components separately:
 
-## 🔄 Convert Model to ONNX
+1. **PyTorch Inference Only**:
+   ```bash
+   python pytorch_inference/inference.py
+   ```
 
-* Converts the PyTorch YOLO model to ONNX format
-* Uses fixed input dimensions for stability
-* Validates the exported ONNX graph
+2. **ONNX Conversion Only**:
+   ```bash
+   python onnx_conversion/convert.py
+   ```
 
-```bash
-python onnx_conversion/convert_to_onnx.py
-```
+3. **ONNX Inference Only**:
+   ```bash
+   python onnx_inference/inference.py
+   ```
 
-✔️ ONNX model validation is performed using `onnx.checker`.
+## Command Line Arguments
 
----
+- `--model, -m`: Path to YOLO PyTorch model file (default: yolo11n.pt)
+- `--images, -i`: Directory containing input images (default: images/)
+- `--output, -o`: Output directory for results (default: outputs/)
+- `--confidence, -c`: Confidence threshold for detections (default: 0.25)
+- `--iou-threshold, -t`: IoU threshold for NMS (default: 0.45)
+- `--cuda`: Use CUDA for ONNX Runtime inference
+- `--no-validation`: Skip ONNX model validation
+- `--no-comparison`: Skip output comparison during conversion
 
-## ⚡ ONNX Runtime Inference
+## Output Files
 
-* Loads the converted ONNX model
-* Runs inference on the same input images
-* Outputs are logged and saved for comparison
+The pipeline generates several output files:
 
-```bash
-python onnx_inference/run_onnx.py
-```
+### PyTorch Results (`outputs/pytorch/`)
+- `annotated_*.jpg`: Images with bounding boxes and labels
+- `detections.json`: Detection results in JSON format
 
----
+### ONNX Results (`outputs/onnx/`)
+- `onnx_annotated_*.jpg`: ONNX inference results
+- `onnx_detections.json`: ONNX detection results
 
-## 📊 Output Comparison (Optional)
+### ONNX Model (`outputs/onnx_conversion/`)
+- `yolo11n.onnx`: Converted ONNX model
 
-* PyTorch and ONNX predictions are visually compared
-* Bounding boxes are overlaid
-* Minor numerical differences are expected due to floating-point precision
+### Comparison Analysis (`outputs/comparison/`)
+- `comparison_results.json`: Detailed comparison metrics
+- `comparison_report.txt`: Text summary of comparison
+- `comparison_plots.png`: Visual comparison plots
 
-This step helps demonstrate **functional equivalence** between the two inference pipelines.
+### Pipeline Logs
+- `yolo_assessment.log`: Detailed execution log
+- `final_report.txt`: Summary of the entire pipeline
 
----
+## Key Features Explained
 
-## 🤖 AI-Assisted Coding
+### 1. Robust Preprocessing
+- Aspect ratio preservation with letterboxing
+- Consistent preprocessing for both PyTorch and ONNX
+- Configurable input sizes and normalization
 
-Throughout the implementation, **Cursor Pro / Windsurf AI** was used to:
+### 2. Comprehensive Validation
+- ONNX model structure validation
+- Output comparison between PyTorch and ONNX
+- Numerical accuracy verification
 
-* Scaffold scripts quickly
-* Validate ONNX export parameters
-* Catch common YOLO/ONNX pitfalls
-* Review code structure and robustness
+### 3. Advanced Comparison Metrics
+- IoU-based detection matching
+- Precision, Recall, and F1 score calculation
+- Confidence score comparison
+- Per-image and aggregate statistics
 
-AI tools were used intentionally as **engineering assistants**, not as black-box generators.
+### 4. Production-Ready Code
+- Comprehensive error handling
+- Detailed logging at each stage
+- Modular and extensible architecture
+- Type hints and documentation
 
----
+### 5. Visualization Tools
+- Side-by-side result comparison
+- Statistical plots and charts
+- Annotated image generation
+- Summary visualizations
 
-## 🎥 Video Walkthrough
+## Dependencies
 
-A full **screen + audio recording** accompanies this project, covering:
+All dependencies are pinned in `requirements.txt` for reproducibility:
 
-* Environment setup
-* PyTorch inference
-* ONNX conversion
-* ONNX Runtime inference
-* Output validation and comparison
-* Explanation of design decisions and AI tool usage
+- `torch==2.1.2` - PyTorch deep learning framework
+- `torchvision==0.16.2` - Computer vision utilities
+- `onnx==1.15.0` - ONNX model format support
+- `onnxruntime==1.16.3` - ONNX Runtime inference engine
+- `opencv-python==4.8.1.78` - Computer vision operations
+- `matplotlib==3.8.2` - Plotting and visualization
+- `ultralytics==8.0.206` - YOLO model implementation
+- `numpy==1.24.4` - Numerical computations
+- `Pillow==10.1.0` - Image processing
+- `tqdm==4.66.1` - Progress bars
 
-⏱️ Total runtime: under 60 minutes
+## Technical Details
 
----
+### Model Conversion Process
+1. **Model Loading**: Load PyTorch YOLO model using Ultralytics
+2. **Input Preparation**: Create dummy input with proper shape
+3. **ONNX Export**: Export with specified opset version and dynamic axes
+4. **Validation**: Verify ONNX model structure and runtime compatibility
+5. **Output Comparison**: Ensure numerical consistency
 
-## ✅ Key Takeaways
+### Inference Pipeline
+1. **Image Loading**: Read and validate input images
+2. **Preprocessing**: Resize, normalize, and format images
+3. **Model Inference**: Run detection with confidence thresholds
+4. **Post-processing**: Apply NMS and format results
+5. **Visualization**: Generate annotated images and plots
 
-* Clean, reproducible environment setup is critical
-* Always validate PyTorch inference **before** ONNX conversion
-* ONNX Runtime provides portable, efficient inference
-* AI-assisted tools improve productivity when used deliberately
-* Clear logging and explanations matter as much as correct output
+### Comparison Methodology
+- **IoU Matching**: Greedy matching based on Intersection over Union
+- **Metrics Calculation**: Precision, Recall, F1 score
+- **Statistical Analysis**: Per-image and aggregate statistics
+- **Visual Comparison**: Side-by-side annotated images
 
----
+## Troubleshooting
 
-## 🙌 Final Notes
+### Common Issues
 
-This project focuses on **correctness, clarity, and process**, mirroring real-world production workflows for ML inference pipelines.
+1. **CUDA Not Available**: Falls back to CPU automatically
+2. **Memory Issues**: Reduce batch size or image resolution
+3. **Model Loading Errors**: Verify model file path and format
+4. **ONNX Validation Failures**: Check opset version compatibility
 
-Thank you for reviewing this submission.
+### Performance Tips
 
-— **Yamlak**
+- Use CUDA for faster ONNX Runtime inference
+- Optimize image sizes for your specific use case
+- Adjust confidence and IoU thresholds for your dataset
+- Monitor memory usage with large image batches
 
----
+## Extension Points
+
+The modular architecture allows easy extension:
+
+- **New Model Formats**: Add conversion scripts for other formats
+- **Custom Preprocessing**: Modify preprocessing for specific requirements
+- **Additional Metrics**: Extend comparison with custom metrics
+- **Different Visualizations**: Add new plotting functions
+- **Batch Processing**: Optimize for large-scale processing
+
+## License
+
+This project is provided as-is for educational and assessment purposes.

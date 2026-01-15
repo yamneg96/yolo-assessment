@@ -1,0 +1,30 @@
+
+YOLO Assessment Pipeline - Final Report
+=====================================
+
+Execution Summary:
+- Total Execution Time: 12.37 seconds
+- Model: yolo11n.pt
+- Image Directory: images
+- Output Directory: outputs
+
+Configuration:
+- Confidence Threshold: 0.25
+- IoU Threshold: 0.45
+- ONNX Validation: True
+- Output Comparison: True
+- CUDA Usage: False
+
+Generated Outputs:
+1. PyTorch Results: outputs\pytorch
+2. ONNX Model: outputs\onnx_conversion
+3. ONNX Results: outputs\onnx
+4. Comparison Analysis: outputs\comparison
+
+Files Created:
+- PyTorch annotated images and detections.json
+- ONNX model file (.onnx) and annotated images
+- Comparison report with IoU analysis and visualizations
+- Detailed log file: yolo_assessment.log
+
+Pipeline completed successfully!

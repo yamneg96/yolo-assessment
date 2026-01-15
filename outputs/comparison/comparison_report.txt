@@ -1,0 +1,47 @@
+
+YOLO PyTorch vs ONNX Inference Comparison Report
+===============================================
+
+Summary Statistics:
+- Total Images Processed: 3
+- IoU Threshold for Matching: 0.45
+
+Detection Counts:
+- Total PyTorch Detections: 0
+- Total ONNX Detections: 3
+- Total Matches: 0
+
+Performance Metrics:
+- Average IoU (matched): 0.0000
+- Precision: 0.0000
+- Recall: 0.0000
+- F1 Score: 0.0000
+
+Per-Image Statistics:
+
+Image 1:
+- PyTorch: 0 detections
+- ONNX: 1 detections
+- Matches: 0
+- Avg IoU: 0.0000
+- Precision: 0.0000
+- Recall: 0.0000
+- Avg Confidence Diff: 0.0000
+
+Image 2:
+- PyTorch: 0 detections
+- ONNX: 1 detections
+- Matches: 0
+- Avg IoU: 0.0000
+- Precision: 0.0000
+- Recall: 0.0000
+- Avg Confidence Diff: 0.0000
+
+Image 3:
+- PyTorch: 0 detections
+- ONNX: 1 detections
+- Matches: 0
+- Avg IoU: 0.0000
+- Precision: 0.0000
+- Recall: 0.0000
+- Avg Confidence Diff: 0.0000

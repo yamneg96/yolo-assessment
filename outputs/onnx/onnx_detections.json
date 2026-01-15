@@ -1,0 +1,56 @@
+[
+  {
+    "image_path": "images\\image (63).png",
+    "output_path": "outputs\\onnx\\onnx_annotated_image (63).jpg",
+    "detections": [
+      {
+        "box": [
+          0.0,
+          0.0,
+          18.84754180908203,
+          0.0
+        ],
+        "score": 40354.46875,
+        "label": 0,
+        "class_name": "person"
+      }
+    ],
+    "num_detections": 1
+  },
+  {
+    "image_path": "images\\image (64).png",
+    "output_path": "outputs\\onnx\\onnx_annotated_image (64).jpg",
+    "detections": [
+      {
+        "box": [
+          0.0,
+          0.0,
+          36.52791976928711,
+          0.0
+        ],
+        "score": 46979.4765625,
+        "label": 0,
+        "class_name": "person"
+      }
+    ],
+    "num_detections": 1
+  },
+  {
+    "image_path": "images\\image-2.png",
+    "output_path": "outputs\\onnx\\onnx_annotated_image-2.jpg",
+    "detections": [
+      {
+        "box": [
+          0.0,
+          0.0,
+          76.70819091796875,
+          0.0
+        ],
+        "score": 47207.10546875,
+        "label": 0,
+        "class_name": "person"
+      }
+    ],
+    "num_detections": 1
+  }
+]

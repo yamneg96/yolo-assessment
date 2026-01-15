@@ -1,0 +1,20 @@
+[
+  {
+    "image_path": "images\\image (63).png",
+    "output_path": "outputs\\pytorch\\annotated_image (63).jpg",
+    "detections": [],
+    "num_detections": 0
+  },
+  {
+    "image_path": "images\\image (64).png",
+    "output_path": "outputs\\pytorch\\annotated_image (64).jpg",
+    "detections": [],
+    "num_detections": 0
+  },
+  {
+    "image_path": "images\\image-2.png",
+    "output_path": "outputs\\pytorch\\annotated_image-2.jpg",
+    "detections": [],
+    "num_detections": 0
+  }
+]
