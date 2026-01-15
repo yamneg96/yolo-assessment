@@ -6,8 +6,11 @@ non-maximum suppression, coordinate transformations, and result formatting.
 """
 
 import numpy as np
+import logging
 from typing import Tuple, List
 import cv2
+
+logger = logging.getLogger(__name__)
 
 
 def non_max_suppression(boxes: np.ndarray, scores: np.ndarray, 
@@ -65,13 +68,14 @@ def process_yolo_output(output: np.ndarray, original_shape: Tuple[int, int],
                        input_shape: Tuple[int, int] = (640, 640),
                        conf_threshold: float = 0.25) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
-    Process raw YOLO model output to extract detections.
+    Process raw YOLO11 ONNX model output to extract detections.
     
-    This function handles the standard YOLO output format and transforms
-    coordinates from model input space back to original image space.
+    YOLO11 outputs [1, 84, 8400] where:
+    - 84 = 4 (bbox) + 80 (classes)
+    - 8400 = number of anchor points
     
     Args:
-        output: Raw model output tensor
+        output: Raw model output tensor [1, 84, 8400]
         original_shape: Original image shape (height, width)
         input_shape: Model input shape (height, width)
         conf_threshold: Confidence threshold for filtering
@@ -84,26 +88,26 @@ def process_yolo_output(output: np.ndarray, original_shape: Tuple[int, int],
     """
     # Handle different output shapes
     if len(output.shape) == 3:
-        output = output.squeeze(0)  # Remove batch dimension
+        output = output.squeeze(0)  # Remove batch dimension -> [84, 8400]
     
     if len(output.shape) == 2:
-        # Standard YOLO format: [num_detections, 5 + num_classes]
-        # Format: [x_center, y_center, width, height, confidence, class_probs...]
+        # YOLO11 format: [84, 8400] where 84 = 4 bbox + 80 classes
+        # Transpose to get [8400, 84] for easier processing
+        output = output.T  # [8400, 84]
         
-        # Extract boxes and confidence
+        # Extract boxes and class probabilities
         boxes = output[:, :4]  # [x_center, y_center, width, height]
+        class_probs = output[:, 4:]  # [80 classes]
         
-        # Apply sigmoid to objectness and class probabilities
-        obj_conf = 1 / (1 + np.exp(-output[:, 4]))  # sigmoid of objectness
+        # Apply sigmoid to class probabilities
+        class_probs_sigmoid = 1 / (1 + np.exp(-class_probs))
         
-        # Extract class probabilities and apply sigmoid
-        class_probs = output[:, 5:]
-        class_probs_sigmoid = 1 / (1 + np.exp(-class_probs))  # sigmoid for each class
+        # Get max class confidence and corresponding class
         class_conf = np.max(class_probs_sigmoid, axis=1)
         class_labels = np.argmax(class_probs_sigmoid, axis=1)
         
-        # Calculate final confidence (objectness * class confidence)
-        final_conf = obj_conf * class_conf
+        # For YOLO11, final confidence is just the class confidence (no objectness)
+        final_conf = class_conf
         
         # Filter by confidence threshold
         valid_mask = final_conf > conf_threshold

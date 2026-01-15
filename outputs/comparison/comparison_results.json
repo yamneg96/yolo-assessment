@@ -5,7 +5,7 @@
     {
       "image_index": 0,
       "pytorch_detections": 0,
-      "onnx_detections": 1,
+      "onnx_detections": 0,
       "matches": 0,
       "iou_matches": [],
       "average_iou": 0.0,
@@ -17,7 +17,7 @@
     {
       "image_index": 1,
       "pytorch_detections": 0,
-      "onnx_detections": 1,
+      "onnx_detections": 0,
       "matches": 0,
       "iou_matches": [],
       "average_iou": 0.0,
@@ -29,7 +29,7 @@
     {
       "image_index": 2,
       "pytorch_detections": 5,
-      "onnx_detections": 1,
+      "onnx_detections": 4,
       "matches": 0,
       "iou_matches": [],
       "average_iou": 0.0,
@@ -41,7 +41,7 @@
   ],
   "summary": {
     "total_pytorch_detections": 5,
-    "total_onnx_detections": 3,
+    "total_onnx_detections": 4,
     "total_matches": 0,
     "average_iou": 0.0,
     "precision": 0.0,

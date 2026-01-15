@@ -2,38 +2,14 @@
   {
     "image_path": "images\\image (63).png",
     "output_path": "outputs\\onnx\\onnx_annotated_image (63).jpg",
-    "detections": [
-      {
-        "box": [
-          0.0,
-          0.0,
-          9.815088272094727,
-          0.0
-        ],
-        "score": 1.0,
-        "label": 0,
-        "class_name": "person"
-      }
-    ],
-    "num_detections": 1
+    "detections": [],
+    "num_detections": 0
   },
   {
     "image_path": "images\\image (64).png",
     "output_path": "outputs\\onnx\\onnx_annotated_image (64).jpg",
-    "detections": [
-      {
-        "box": [
-          0.0,
-          0.0,
-          17.849733352661133,
-          0.0
-        ],
-        "score": 1.0,
-        "label": 0,
-        "class_name": "person"
-      }
-    ],
-    "num_detections": 1
+    "detections": [],
+    "num_detections": 0
   },
   {
     "image_path": "images\\image-2.png",
@@ -41,16 +17,49 @@
     "detections": [
       {
         "box": [
+          117.40789031982422,
           0.0,
-          0.0,
-          37.72365188598633,
-          0.0
+          339.8723449707031,
+          582.5
         ],
-        "score": 1.0,
+        "score": 0.7105903029441833,
         "label": 0,
         "class_name": "person"
+      },
+      {
+        "box": [
+          543.119873046875,
+          0.0,
+          947.4987182617188,
+          582.5
+        ],
+        "score": 0.710095226764679,
+        "label": 1,
+        "class_name": "bicycle"
+      },
+      {
+        "box": [
+          343.104248046875,
+          396.6357727050781,
+          592.5184936523438,
+          582.5
+        ],
+        "score": 0.6983973383903503,
+        "label": 2,
+        "class_name": "car"
+      },
+      {
+        "box": [
+          577.4398803710938,
+          452.9834289550781,
+          677.9983520507812,
+          582.5
+        ],
+        "score": 0.6726928949356079,
+        "label": 3,
+        "class_name": "motorcycle"
       }
     ],
-    "num_detections": 1
+    "num_detections": 4
   }
 ]

@@ -264,7 +264,7 @@ class ONNXInference:
                 if len(boxes) > 0:
                     boxes, scores, labels = non_max_suppression(
                         boxes, scores, 
-                        score_threshold=self.confidence_threshold,
+                        score_threshold=0.6,  # Higher threshold to reduce false positives
                         iou_threshold=self.iou_threshold
                     )
                 
