@@ -92,14 +92,17 @@ def process_yolo_output(output: np.ndarray, original_shape: Tuple[int, int],
         
         # Extract boxes and confidence
         boxes = output[:, :4]  # [x_center, y_center, width, height]
-        obj_conf = output[:, 4]  # objectness confidence
         
-        # Extract class probabilities and find best class
+        # Apply sigmoid to objectness and class probabilities
+        obj_conf = 1 / (1 + np.exp(-output[:, 4]))  # sigmoid of objectness
+        
+        # Extract class probabilities and apply sigmoid
         class_probs = output[:, 5:]
-        class_conf = np.max(class_probs, axis=1)
-        class_labels = np.argmax(class_probs, axis=1)
+        class_probs_sigmoid = 1 / (1 + np.exp(-class_probs))  # sigmoid for each class
+        class_conf = np.max(class_probs_sigmoid, axis=1)
+        class_labels = np.argmax(class_probs_sigmoid, axis=1)
         
-        # Calculate final confidence
+        # Calculate final confidence (objectness * class confidence)
         final_conf = obj_conf * class_conf
         
         # Filter by confidence threshold

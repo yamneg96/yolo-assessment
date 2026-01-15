@@ -28,7 +28,7 @@
     },
     {
       "image_index": 2,
-      "pytorch_detections": 0,
+      "pytorch_detections": 5,
       "onnx_detections": 1,
       "matches": 0,
       "iou_matches": [],
@@ -40,7 +40,7 @@
     }
   ],
   "summary": {
-    "total_pytorch_detections": 0,
+    "total_pytorch_detections": 5,
     "total_onnx_detections": 3,
     "total_matches": 0,
     "average_iou": 0.0,

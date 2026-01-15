@@ -44,13 +44,20 @@ def draw_bounding_boxes(image: np.ndarray, boxes: np.ndarray, scores: np.ndarray
             x1, y1, x2, y2 = map(int, box)
             
             # Get color for this class
-            class_color = colors[int(label) % len(colors)] if len(colors) > 0 else color
+            if isinstance(class_names, dict):
+                class_color = colors[int(label) % len(colors)] if len(colors) > 0 else color
+                class_name = class_names.get(int(label), f"class_{int(label)}")
+            elif isinstance(class_names, list):
+                class_color = colors[int(label) % len(colors)] if len(colors) > 0 else color
+                class_name = class_names[int(label)] if int(label) < len(class_names) else f"class_{int(label)}"
+            else:
+                class_color = color
+                class_name = f"class_{int(label)}"
             
             # Draw bounding box
             cv2.rectangle(annotated_image, (x1, y1), (x2, y2), class_color, thickness)
             
             # Prepare label text
-            class_name = class_names.get(int(label), f"class_{int(label)}")
             label_text = f"{class_name}: {score:.2f}"
             
             # Calculate text size and position

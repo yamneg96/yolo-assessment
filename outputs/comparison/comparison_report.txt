@@ -7,7 +7,7 @@ Summary Statistics:
 - IoU Threshold for Matching: 0.45
 
 Detection Counts:
-- Total PyTorch Detections: 0
+- Total PyTorch Detections: 5
 - Total ONNX Detections: 3
 - Total Matches: 0
 
@@ -38,7 +38,7 @@ Image 2:
 - Avg Confidence Diff: 0.0000
 
 Image 3:
-- PyTorch: 0 detections
+- PyTorch: 5 detections
 - ONNX: 1 detections
 - Matches: 0
 - Avg IoU: 0.0000

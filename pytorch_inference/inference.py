@@ -117,7 +117,9 @@ class PyTorchInference:
                 original_shape = image.shape[:2]  # (height, width)
                 
                 # Preprocess image (resize, normalize, etc.)
-                processed_image, scale_factor = preprocess_image(image)
+                # For PyTorch YOLO, let Ultralytics handle preprocessing internally
+                processed_image = image
+                scale_factor = 1.0
                 
                 preprocessed_images.append(processed_image)
                 scale_factors.append(scale_factor)
