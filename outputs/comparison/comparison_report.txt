@@ -9,13 +9,13 @@ Summary Statistics:
 Detection Counts:
 - Total PyTorch Detections: 5
 - Total ONNX Detections: 4
-- Total Matches: 0
+- Total Matches: 3
 
 Performance Metrics:
-- Average IoU (matched): 0.0000
-- Precision: 0.0000
-- Recall: 0.0000
-- F1 Score: 0.0000
+- Average IoU (matched): 0.7248
+- Precision: 0.7500
+- Recall: 0.6000
+- F1 Score: 0.6667
 
 Per-Image Statistics:
 
@@ -40,8 +40,8 @@ Image 2:
 Image 3:
 - PyTorch: 5 detections
 - ONNX: 4 detections
-- Matches: 0
-- Avg IoU: 0.0000
-- Precision: 0.0000
-- Recall: 0.0000
-- Avg Confidence Diff: 0.0000
+- Matches: 3
+- Avg IoU: 0.7248
+- Precision: 0.7500
+- Recall: 0.6000
+- Avg Confidence Diff: 0.2212

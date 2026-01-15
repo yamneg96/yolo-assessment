@@ -30,22 +30,30 @@
       "image_index": 2,
       "pytorch_detections": 5,
       "onnx_detections": 4,
-      "matches": 0,
-      "iou_matches": [],
-      "average_iou": 0.0,
-      "precision": 0.0,
-      "recall": 0.0,
-      "confidence_differences": [],
-      "avg_confidence_difference": 0.0
+      "matches": 3,
+      "iou_matches": [
+        0.7608147910531349,
+        0.7332711135470183,
+        0.6803466542064968
+      ],
+      "average_iou": 0.7248108529355499,
+      "precision": 0.75,
+      "recall": 0.6,
+      "confidence_differences": [
+        0.23448705673217773,
+        0.23900103569030762,
+        0.19003421068191528
+      ],
+      "avg_confidence_difference": 0.2211741010348002
     }
   ],
   "summary": {
     "total_pytorch_detections": 5,
     "total_onnx_detections": 4,
-    "total_matches": 0,
-    "average_iou": 0.0,
-    "precision": 0.0,
-    "recall": 0.0,
-    "f1_score": 0.0
+    "total_matches": 3,
+    "average_iou": 0.7248108529355499,
+    "precision": 0.75,
+    "recall": 0.6,
+    "f1_score": 0.6666666666666665
   }
 }

@@ -263,14 +263,13 @@ class ONNXInference:
                 # Apply non-maximum suppression
                 if len(boxes) > 0:
                     boxes, scores, labels = non_max_suppression(
-                        boxes, scores, 
+                        boxes, scores, labels,  # Pass labels to NMS
                         score_threshold=0.6,  # Higher threshold to reduce false positives
                         iou_threshold=self.iou_threshold
                     )
                 
-                # Scale boxes back to original image coordinates
-                if len(boxes) > 0:
-                    boxes = boxes / scale_factor
+                # Boxes are already scaled to original coordinates in postprocessing
+                # No additional scaling needed here
                 
                 processed_results.append({
                     'boxes': boxes,

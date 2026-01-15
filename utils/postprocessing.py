@@ -13,7 +13,7 @@ import cv2
 logger = logging.getLogger(__name__)
 
 
-def non_max_suppression(boxes: np.ndarray, scores: np.ndarray, 
+def non_max_suppression(boxes: np.ndarray, scores: np.ndarray, labels: np.ndarray,
                        score_threshold: float = 0.25, iou_threshold: float = 0.45) -> Tuple[np.ndarray, np.ndarray, np.ndarray]:
     """
     Apply non-maximum suppression to remove duplicate detections.
@@ -21,6 +21,7 @@ def non_max_suppression(boxes: np.ndarray, scores: np.ndarray,
     Args:
         boxes: Array of bounding boxes in format [x1, y1, x2, y2]
         scores: Array of confidence scores
+        labels: Array of class labels
         score_threshold: Minimum confidence score to keep
         iou_threshold: IoU threshold for suppression
         
@@ -34,6 +35,7 @@ def non_max_suppression(boxes: np.ndarray, scores: np.ndarray,
     valid_indices = scores > score_threshold
     boxes = boxes[valid_indices]
     scores = scores[valid_indices]
+    labels = labels[valid_indices]
     
     if len(boxes) == 0:
         return np.array([]), np.array([]), np.array([])
@@ -55,7 +57,7 @@ def non_max_suppression(boxes: np.ndarray, scores: np.ndarray,
         indices = indices.flatten()
         filtered_boxes = boxes[indices]
         filtered_scores = scores[indices]
-        filtered_labels = np.arange(len(filtered_boxes))  # Placeholder labels
+        filtered_labels = labels[indices]  # Preserve actual class labels
     else:
         filtered_boxes = np.array([])
         filtered_scores = np.array([])
@@ -155,10 +157,10 @@ def scale_boxes(boxes: np.ndarray, input_shape: Tuple[int, int],
     input_h, input_w = input_shape
     orig_h, orig_w = original_shape
     
-    # Calculate the scaling ratio (maintain aspect ratio)
+    # Calculate the scaling ratio (maintain aspect ratio) - same as ONNX preprocessing
     scale = min(input_w / orig_w, input_h / orig_h)
     
-    # Calculate padding
+    # Calculate padding - same as ONNX preprocessing
     pad_x = (input_w - orig_w * scale) / 2
     pad_y = (input_h - orig_h * scale) / 2
     
