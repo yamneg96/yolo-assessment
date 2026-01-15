@@ -72,5 +72,34 @@
       }
     ],
     "num_detections": 5
+  },
+  {
+    "image_path": "images\\image.png",
+    "output_path": "outputs\\pytorch\\annotated_image.jpg",
+    "detections": [
+      {
+        "box": [
+          240.54356384277344,
+          308.7112731933594,
+          589.2177734375,
+          817.1397705078125
+        ],
+        "score": 0.863946795463562,
+        "label": 16,
+        "class_name": "dog"
+      },
+      {
+        "box": [
+          579.0125732421875,
+          296.75823974609375,
+          1111.6741943359375,
+          777.0463256835938
+        ],
+        "score": 0.8250166773796082,
+        "label": 0,
+        "class_name": "person"
+      }
+    ],
+    "num_detections": 2
   }
 ]

@@ -3,7 +3,7 @@ YOLO Assessment Pipeline - Final Report
 =====================================
 
 Execution Summary:
-- Total Execution Time: 23.88 seconds
+- Total Execution Time: 15.88 seconds
 - Model: yolo11n.pt
 - Image Directory: images
 - Output Directory: outputs

@@ -61,5 +61,34 @@
       }
     ],
     "num_detections": 4
+  },
+  {
+    "image_path": "images\\image.png",
+    "output_path": "outputs\\onnx\\onnx_annotated_image.jpg",
+    "detections": [
+      {
+        "box": [
+          577.9150390625,
+          228.86495971679688,
+          1109.544677734375,
+          853.0
+        ],
+        "score": 0.6861303448677063,
+        "label": 0,
+        "class_name": "person"
+      },
+      {
+        "box": [
+          239.09690856933594,
+          252.78955078125,
+          589.72607421875,
+          853.0
+        ],
+        "score": 0.6835730671882629,
+        "label": 16,
+        "class_name": "dog"
+      }
+    ],
+    "num_detections": 2
   }
 ]
